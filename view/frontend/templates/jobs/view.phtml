@@ -1,0 +1,33 @@
+<?php
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+
+/** @var \PHPAISS\Jobs\Block\Job\View $this */
+
+$job = $this->getLoadedJob();
+$department = $this->getLoadedDepartment();
+?>
+<?php if($job->getId()) : ?>
+    <div class="job-view-wrapper">
+        <div class="department_name">
+            <?php echo __('Department : '); ?>
+            <a href="<?php echo $this->getDepartmentUrl($job); ?>" title="<?php echo $department->getName(); ?>">
+                <?php echo $department->getName(); ?>
+            </a>
+        </div>
+        <div class="type"><?php echo $this->prepareJobType($job->getType()); ?></div>
+        <div class="location"><?php echo $job->getLocation(); ?></div>
+        <div class="date"><?php echo $this->formatDate($job->getDate()); ?></div>
+        <div class="description"><?php echo $job->getDescription(); ?></div>
+    </div>
+<?php else : ?>
+    <?php echo __('This job does not exist'); ?>
+<?php endif; ?>

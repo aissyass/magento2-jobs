@@ -1,0 +1,45 @@
+<?php
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+
+/** @var \PHPAISS\Jobs\Block\Job\ListJob $this */
+/** @var \PHPAISS\Jobs\Model\Job $job */
+
+$jobCollection = $this->getLoadedJobCollection();
+$iterator = 1;
+$total = $jobCollection->count();
+?>
+
+<div class="job-wrapper">
+    <ol class="jobs list">
+        <?php foreach($jobCollection AS $job): ?>
+            <li class="item<?php echo ($iterator == 1) ? ' first' : ''; ?><?php echo ($total == $iterator) ? ' last' : ''; ?>">
+                <div class="title">
+                    <a href="<?php echo $this->getJobUrl($job); ?>" title="<?php echo $job->getTitle(); ?>">
+                        <?php echo $job->getTitle(); ?>
+                    </a>
+                </div>
+                <? /*For 'department_name' @see: _initSelect() in \PHPAISS\Jobs\Model\ResourceModel\Job\Collection*/ ?>
+                <div class="department_name">
+                    <?php echo __('Department : '); ?>
+                    <a href="<?php echo $this->getDepartmentUrl($job); ?>" title="<?php echo $job->getData('department_name'); ?>">
+                        <?php echo $job->getData('department_name'); ?>
+                    </a>
+                </div>
+                <div class="type"><?php echo $this->prepareJobType($job->getType()); ?></div>
+                <div class="location"><?php echo $job->getLocation(); ?></div>
+                <div class="date"><?php echo $this->formatDate($job->getDate()); ?></div>
+                <div class="description"><?php echo $job->getDescription(); ?></div>
+            </li>
+            <?php $iterator++; ?>
+        <?php endforeach; ?>
+    </ol>
+</div>

@@ -1,0 +1,12 @@
+@phpaissjobs-icons-admin__font-name-path: '@{baseDir}PHPAISS_Jobs/fonts/jobs';
+@phpaissjobs-icons-admin__font-name : 'Jobs';
+.lib-font-face(
+  @family-name:@phpaissjobs-icons-admin__font-name,
+  @font-path: @phpaissjobs-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+.admin__menu .item-jobs-tab.parent.level-0 > a:before {
+  font-family: @phpaissjobs-icons-admin__font-name;
+  content: "\e976";
+}

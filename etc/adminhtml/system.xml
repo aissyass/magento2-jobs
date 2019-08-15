@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="jobs" translate="label" sortOrder="1000">
+            <label>Jobs</label>
+        </tab>
+        <section id="jobs" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Jobs</label>
+            <tab>jobs</tab>
+            <resource>PHPAISS_Jobs::jobs_config</resource>
+            <group id="department" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Department configuration</label>
+                <field id="view_list" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show job list</label>
+                    <comment>Show department's job list of the viewing department</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+       </section>
+    </system>
+</config>

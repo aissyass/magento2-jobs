@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!--New Section Jobs-->
+        <add
+            id="PHPAISS_Jobs::jobs_tab"
+            resource="PHPAISS_Jobs::jobs_tab"
+            module="PHPAISS_Jobs"
+            title="Jobs"
+            translate="title"
+            sortOrder="20" />
+        <add
+            id="PHPAISS_Jobs::jobs_head"
+            resource="PHPAISS_Jobs::jobs_head"
+            module="PHPAISS_Jobs"
+            title="Elements"
+            translate="title"
+            parent="PHPAISS_Jobs::jobs_tab"
+            sortOrder="10" />
+        <add
+            id="PHPAISS_Jobs::department"
+            resource="PHPAISS_Jobs::department"
+            title="Departments"
+            translate="title"
+            module="PHPAISS_Jobs"
+            sortOrder="10"
+            parent="PHPAISS_Jobs::jobs_head"
+            action="jobs/department" />
+        <add
+            id="PHPAISS_Jobs::job"
+            resource="PHPAISS_Jobs::job"
+            title="Jobs"
+            translate="title"
+            module="PHPAISS_Jobs"
+            sortOrder="20"
+            parent="PHPAISS_Jobs::jobs_head"
+            action="jobs/job" />
+    </menu>
+</config>

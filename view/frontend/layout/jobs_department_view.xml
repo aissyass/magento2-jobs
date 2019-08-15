@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+ -->
+ 
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="2columns-right">
+    <head>
+        <css src="PHPAISS_Jobs::styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="PHPAISS\Jobs\Block\Department\View" name="jobs_department_view" template="departments/view.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

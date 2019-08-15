@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--++++++++ PREFERENCES ++++++++-->
+    <preference for="PHPAISS\Jobs\Api\Data\DepartmentInterface" type="PHPAISS\Jobs\Model\Department" />
+    <preference for="PHPAISS\Jobs\Api\Data\JobInterface" type="PHPAISS\Jobs\Model\Job" />
+    <preference for="PHPAISS\Jobs\Api\DepartmentRepositoryInterface" type="PHPAISS\Jobs\Model\DepartmentRepository" />
+    <preference for="PHPAISS\Jobs\Api\JobRepositoryInterface" type="PHPAISS\Jobs\Model\JobRepository" />
+
+    <!--++++++++ LISTING DATA SOURCES ++++++++-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <!-- Type for jobs_department_listing_data_source -->
+                <item name="jobs_department_listing_data_source" xsi:type="string">
+                    PHPAISS\Jobs\Model\ResourceModel\Grid\Department\Collection
+                </item>
+                <!-- Type for jobs_job_listing_data_source -->
+                <item name="jobs_job_listing_data_source" xsi:type="string">
+                    PHPAISS\Jobs\Model\ResourceModel\Grid\Job\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--++++++++ DI GRID DEPARTMENT ++++++++-->
+    <!-- Fulltext DataProvider -->
+    <type name="PHPAISS\Jobs\Ui\Component\Department\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">PHPAISS\Jobs\Ui\Component\Department\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Simulate our class PHPAISS\Jobs\Model\ResourceModel\Grid\Department\Collection -->
+    <!-- Look up in section 'LISTING DATA SOURCES' -->
+    <virtualType name="PHPAISS\Jobs\Model\ResourceModel\Grid\Department\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">phpaiss_jobs_departments</argument>
+            <argument name="resourceModel" xsi:type="string">PHPAISS\Jobs\Model\ResourceModel\Department</argument>
+        </arguments>
+    </virtualType>
+
+    <!--++++++++ DI GRID JOB ++++++++-->
+    <!-- Fulltext DataProvider -->
+    <type name="PHPAISS\Jobs\Ui\Component\Job\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">PHPAISS\Jobs\Ui\Component\Job\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Simulate our class PHPAISS\Jobs\Model\ResourceModel\Grid\Department\Collection -->
+    <!-- Look up in section 'LISTING DATA SOURCES' -->
+    <virtualType name="PHPAISS\Jobs\Model\ResourceModel\Grid\Job\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">phpaiss_jobs_jobs</argument>
+            <argument name="resourceModel" xsi:type="string">PHPAISS\Jobs\Model\ResourceModel\Job</argument>
+        </arguments>
+    </virtualType>
+
+    <!--++++++++ METADATAPOOL ++++++++-->
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="PHPAISS\Jobs\Api\Data\DepartmentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">phpaiss_jobs_departments</item>
+                    <item name="eavEntityType" xsi:type="string">department</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+                <item name="PHPAISS\Jobs\Api\Data\JobInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">phpaiss_jobs_jobs</item>
+                    <item name="eavEntityType" xsi:type="string">job</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- CLI -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="jobs_sayhello" xsi:type="object">PHPAISS\Jobs\Console\Command\Sayhello</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- DI FOR IMAGE JOB -->
+    <virtualType name="PHPAISS\Jobs\JobImageUpload" type="PHPAISS\Jobs\Model\Job\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">jobs/tmp/job</argument>
+            <argument name="basePath" xsi:type="string">jobs/job</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="PHPAISS\Jobs\Controller\Adminhtml\Job\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">PHPAISS\Jobs\JobImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="PHPAISS\Jobs\Controller\Adminhtml\Job">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">PHPAISS\Jobs\JobImageUpload</argument>
+        </arguments>
+    </type>
+</config>

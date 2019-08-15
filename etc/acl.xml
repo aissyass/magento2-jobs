@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * created: 2019
+ *
+ * @category  XXXXXXX
+ * @package   Ayaline
+ * @author    aYaline Magento <support.magento-shop@ayaline.com>
+ * @copyright 2019 - aYaline Magento
+ * @license   aYaline - http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ * @link      http://shop.ayaline.com/magento/fr/conditions-generales-de-vente.html
+ */
+ -->
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <!-- Admin menu -->
+                <resource id="PHPAISS_Jobs::jobs_tab" title="Jobs Tab" sortOrder="100">
+                    <resource id="PHPAISS_Jobs::department" title="Departments" sortOrder="10">
+                        <resource id="PHPAISS_Jobs::department_save" title="Save Departments" sortOrder="10" />
+                        <resource id="PHPAISS_Jobs::department_delete" title="Delete Departments" sortOrder="20" />
+                    </resource>
+                    <resource id="PHPAISS_Jobs::job" title="Jobs" sortOrder="20">
+                        <resource id="PHPAISS_Jobs::job_save" title="Save Jobs" sortOrder="10" />
+                        <resource id="PHPAISS_Jobs::job_delete" title="Delete Jobs" sortOrder="20" />
+                    </resource>
+                </resource>
+
+                <!-- Admin config -->
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="PHPAISS_Jobs::jobs_config" title="Jobs Section" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
